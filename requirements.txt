@@ -1,0 +1,15 @@
+torch-scatter
+torch-sparse
+torch-cluster
+torch-spline-conv
+torch-geometric
+torch
+tensorboard
+numpy
+loguru
+PyYAML
+tabulate
+prettytable
+tqdm
+joblib
+matplotlib
