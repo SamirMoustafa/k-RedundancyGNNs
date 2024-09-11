@@ -13,6 +13,52 @@
 ## On the Two Sides of Redundancy in Graph Neural Networks
 This repository contains the code for paper [On the Two Sides of Redundancy in Graph Neural Networks](https://link.springer.com/chapter/10.1007/978-3-031-70365-2_22).
 
+## Usage
+
+The following code demonstrates how to use the `ToCanonizedDirectedAcyclicGraph` class from the dag_gnn module to transform graph data into a DAG format.
+This transformation is useful in graph-related tasks such as node classification or graph classification.
+
+```python
+from src.dag_gnn import ToCanonizedDirectedAcyclicGraph
+
+k_redundancy = 0  # The hyperparameter that controls the redundancy of the graph
+number_of_nodes = ...  # Set this to `None` for graph classification tasks
+number_of_layers_for_your_dag_mlp_model = ...  # Must be greater than or equal to 1
+
+dag_transform = ToCanonizedDirectedAcyclicGraph(num_nodes=number_of_nodes,
+                                                num_layers=number_of_layers_for_your_dag_mlp_model,
+                                                k=k_redundancy)
+data = dag_transform(data)
+
+# In the forward function, you extract the edges per layer:
+def forward(self, data):
+    dag_edge_index = data.dag_edge_index
+    dag_layers_mask = data.dag_layers_mask
+    dag_edge_attr = data.edge_multiplicities
+    dag_readouts = data.dag_readout_at_each_layer
+    dag_leaves_at_each_layer = data.dag_leaves_at_each_layer
+    dag_x = data.dag_x
+    leaves_0 = dag_leaves_at_each_layer[0]
+
+    feature = ...  # Transform original node features `dag_x` to an embedding space
+
+    x = zeros_like(feature)
+    x[leaves_0] = feature[leaves_0]
+
+    for i in range(self.num_layers):
+        edge_index_i = dag_edge_index[:, dag_layers_mask == i]
+        dag_edge_attr_i = dag_edge_attr[dag_layers_mask == i]
+        # Additional operations per layer can be performed here
+        ...
+
+    x_at_each_layer = []
+    for i in range(self.num_layers + 1):
+        readout_i = dag_readouts[i]
+        x_at_each_layer.append(x[readout_i])
+
+
+```
+
 ## Terms and conditions
 When using our code please cite our paper:
 
