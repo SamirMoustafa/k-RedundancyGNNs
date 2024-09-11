@@ -10,23 +10,23 @@
 </div>
 
 
-# Introduction
-This repository contains the code for paper "On the Two Sides of Redundancy in Graph
-Neural Networks".
+## On the Two Sides of Redundancy in Graph Neural Networks
+This repository contains the code for paper [On the Two Sides of Redundancy in Graph Neural Networks](https://link.springer.com/chapter/10.1007/978-3-031-70365-2_22).
 
-# Citation
-If you find this repository useful in your research, please consider citing the following paper:
+## Terms and conditions
+When using our code please cite our paper:
+
 ```bibtex
 @inproceedings{bause2024redundancy,
   title={On the Two Sides of Redundancy in Graph Neural Networks},
-  author={Franka Bause, Samir Moustafa1, Johannes Langguth, Wilfried N. Gansterer, and Nils M. Kriege},
-  booktitle={ECML/PKDD},
+  author={Franka Bause, Samir Moustafa, Johannes Langguth, Wilfried N. Gansterer, and Nils M. Kriege},
+  booktitle={ECML/PKDD, Lecture Notes in Computer Science 14946},
   year={2024},
 }
 ```
-For more information, please refer to the [arXiv version](https://arxiv.org/abs/2310.04190) of the paper.
 
-# Installation
+
+## Installation
 Docker installation:
 ```bash
 # 1. Build the docker image:
@@ -51,7 +51,7 @@ cd k-RedundancyGNNs && pip install -r requirements.txt
 export PYTHONPATH=$PYTHONPATH:$(pwd)
 ```
 
-# Reproducing the results
+## Reproducing the results
 The results can be reproduced by running the following commands:
 ```bash
 # Synthetic datasets (CSL, EXP)
@@ -65,7 +65,7 @@ python task_graph/tudataset/tu_datasets_run.py
 ```
 
 
-# Repository Structure
+## Repository Structure
 ```tree
 .
 |-- data
@@ -108,3 +108,7 @@ python task_graph/tudataset/tu_datasets_run.py
 |-- README.md
 `-- utils.py
 ```
+
+
+## Contact information
+If you have any questions, please contact [Franka Bause](https://dm.cs.univie.ac.at/team/person/112939/).
